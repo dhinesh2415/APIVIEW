@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Form</title>
+</head>
+<center>
+<body>
+    <form method="POST">
+        {% csrf_token %}
+        <label >Name:</label>
+        <input type="text" name="name" value="{{dataget.name}}">
+        <br><br>
+        <label >   Email:</label>
+        <input type="text" name="email" value="{{dataget.email}}"><br><br>
+        <label >Roll Number:</label>
+        <input type="text" name="roll" value="{{dataget.roll_number}}"><br><br>
+        <label >Section:</label>
+        <input type="text" name="section" value="{{dataget.section}}"><br><br>
+        <button type="submit">submit</button>
+    </form>
+    <br>
+    <br>     <br>
+    <table border="1">
+        <th>
+            <td>Student Name</td>
+            <td>Email</td>
+            <td>Roll Numder</td>
+            <td>Section</td>
+            <td>Action</td>
+        </th>
+        
+        {% for i in data %}
+        <tr><td></td>
+            <td>{{i.name}}</td>
+            <td>{{i.email}}</td>
+            <td>{{i.roll_number}}</td>
+            <td>{{i.section}}</td>
+            <td><a href="{% url 'update' i.id %}"><button>Update</button></a>
+            <a href="{% url 'delete' i.id %}"><button>Delete</button></a></td>
+        </tr>
+        {% endfor %}  
+    </table>
+</body></center>
+</html>
